@@ -1,0 +1,60 @@
+<head>
+  <title>Todo List</title>
+</head>
+ 
+<body>
+  <div class="container">
+    <header>
+      <h1>Todo List ({{incompleteCount}} tasks left)</h1>
+      <label class="hide-completed">
+        <input type="checkbox" checked="{{hideCompleted}}" />
+        Hide Completed Tasks
+        {{> loginButtons}}
+      </label>
+      {{#if currentUser}}
+		    <form class="new-task">
+		    	<input type="text" name="text" placeholder="Type some stuff in here plzkty" />
+		    </form>
+	    {{/if}}
+    </header>
+    <ul>
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </ul>
+
+    <header>
+      <h1>To Krang List ({{completeCount}} Krangs completed)</h1>
+      <label class="show-completed">
+      	<input type="checkbox" checked="{{showCompleted}}" />
+      	Show Completed Tasks
+      </label>
+      <form class="new-krang">
+      	<input type="text" name="text" placeholder="MORE KRANG" />
+      </form>
+    </header>
+    <ul>
+      {{#each krangs}}
+        {{> krang}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+ 
+<template name="task">
+  <li class="{{#if checked}}checked{{/if}}">
+  	<button class="delete">&times;</button>
+  	<input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+  	<!-- <span class="text">{{text}}</span> -->
+  	<span class="text"><strong>{{username}}</strong> - {{text}}</span>
+  </li>
+</template>
+
+<template name="krang">
+	<li class="{{#if checked}}checked{{/if}}">  	
+		<button class="delete">&times;</button>
+  	<input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+  	<!-- <span class="text">{{text}}</span> -->
+  	<span class="text"><strong>{{username}}</strong> - {{text}}</span>
+  </li>
+</template>
